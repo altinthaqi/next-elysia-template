@@ -1,14 +1,7 @@
 import Elysia from "elysia";
 import postRoutes from "./post";
-import { helloWorld } from "./hello-world";
-import { signUp } from "./sign-up";
 
-const app = new Elysia({ prefix: "/api" })
-  .use(postRoutes)
-  .use(helloWorld)
-  .use(signUp);
-
-console.log("app", app.routes);
+const app = new Elysia({ prefix: "/api" }).use(postRoutes);
 
 // Expose methods
 export const GET = app.handle;

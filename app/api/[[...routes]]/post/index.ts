@@ -1,4 +1,5 @@
 import { Elysia, t } from "elysia";
+import routeSetup from "@route-setup";
 
 import {
   createPost,
@@ -12,18 +13,19 @@ import { postSchema } from "./schema";
 
 const postRoutes = new Elysia({ prefix: "/post" })
   .model(postSchema)
-  .get("/", () => getPosts())
-  .get("/:id", ({ params: { id } }) => getPost(id), {
+  .use(routeSetup)
+  .get("/", ({ db }) => getPosts({ db }))
+  .get("/:id", ({ params, db }) => getPost({ params, db }), {
     params: "post.get.id",
   })
-  .post("/", ({ body }) => createPost(body), {
+  .post("/", ({ body, db }) => createPost({ body, db }), {
     body: "post.create",
   })
-  .patch("/:id", ({ params: { id }, body }) => updatePost(id, body), {
+  .patch("/:id", ({ params, body, db }) => updatePost({ params, body, db }), {
     params: "post.patch.params",
     body: "post.patch.body",
   })
-  .delete("/", ({ body }) => deletePost(body), {
+  .delete("/", ({ body, db }) => deletePost({ body, db }), {
     body: "post.delete",
   });
 
