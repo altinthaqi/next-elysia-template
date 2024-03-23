@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "elysia": "^1.0.7",
+    "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "typescript": "^5",
