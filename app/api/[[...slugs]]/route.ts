@@ -1,7 +1,7 @@
 import Elysia from "elysia";
-import { helloWorld } from "./routes";
+import { helloWorld, signUp } from "./routes";
 
-const app = new Elysia({ prefix: "/api" }).use(helloWorld);
+const app = new Elysia({ prefix: "/api" }).use(helloWorld).use(signUp);
 
 // Expose methods
 export const GET = app.handle;
