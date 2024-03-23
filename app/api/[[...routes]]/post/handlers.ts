@@ -1,10 +1,10 @@
 import { NotFoundError } from "elysia";
-import { DBType } from "@route-setup";
+import { WithDBType } from "@route-setup";
 
 /**
  * Getting all posts
  */
-export const getPosts = async ({ db }: DBType) => {
+export const getPosts = async ({ db }: WithDBType) => {
   try {
     return await db.post.findMany({ orderBy: { createdAt: "asc" } });
   } catch (error) {
@@ -18,7 +18,7 @@ export const getPosts = async ({ db }: DBType) => {
 export const getPost = async ({
   params,
   db,
-}: { params: { id: number } } & DBType) => {
+}: { params: { id: number } } & WithDBType) => {
   try {
     const post = await db.post.findUnique({
       where: { id: params.id },
@@ -45,7 +45,7 @@ export const createPost = async ({
     title: string;
     content: string;
   };
-} & DBType) => {
+} & WithDBType) => {
   try {
     const { title, content } = body;
 
@@ -65,7 +65,7 @@ export const updatePost = async ({
 }: {
   params: { id: number };
   body: { title?: string; content?: string };
-} & DBType) => {
+} & WithDBType) => {
   try {
     const { title, content } = body;
 
@@ -87,7 +87,7 @@ export const updatePost = async ({
 export const deletePost = async ({
   body,
   db,
-}: { body: { id: number } } & DBType) => {
+}: { body: { id: number } } & WithDBType) => {
   try {
     const { id } = body;
 
