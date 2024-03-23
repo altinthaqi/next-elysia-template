@@ -1,13 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 import { Elysia, t } from "elysia";
-
-const db = new PrismaClient();
+import db from "@db";
 
 const userSchema = {
   "user.request": t.Object({
     username: t.String(),
     password: t.String({
-      minLength: 8,
+      minLength: 3,
     }),
   }),
   "user.response": t.Object({
