@@ -18,3 +18,11 @@ model User {
   username String @unique
   password String
 }
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String   @db.Text()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
