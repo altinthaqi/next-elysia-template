@@ -2,13 +2,13 @@ import { PrismaClient } from "@prisma/client";
 import Elysia from "elysia";
 
 export type WithPrisma = {
-  prisma: typeof prisma;
+  prisma: typeof prismaClient;
 };
 
-const prisma = new PrismaClient();
+export const prismaClient = new PrismaClient();
 
 const prismaService = new Elysia({ name: "prismaService" }).decorate({
-  prisma,
+  prisma: prismaClient,
 });
 
 export default prismaService;

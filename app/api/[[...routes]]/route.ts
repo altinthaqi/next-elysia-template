@@ -1,6 +1,7 @@
 import Elysia from "elysia";
 import postRoutes from "./post";
 import swagger from "@elysiajs/swagger";
+import authRoutes from "./auth";
 
 const swaggerConfig = {
   documentation: {
@@ -14,6 +15,7 @@ const swaggerConfig = {
 
 const app = new Elysia({ prefix: "/api" })
   .use(swagger(swaggerConfig))
+  .use(authRoutes)
   .use(postRoutes);
 
 // Expose methods

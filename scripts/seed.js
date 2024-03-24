@@ -26,8 +26,21 @@ const postsToCreate = [
   },
 ];
 
-const seed = async (posts) => {
-  console.log("Creating posts ...");
+const usersToCreate = [
+  {
+    id: "1",
+    username: "epsilono@gmail.com",
+    hashed_password: "password",
+  },
+  {
+    id: "2",
+    username: "anon@gmail.com",
+    hashed_password: "password1",
+  },
+];
+
+const seed = async (posts, users) => {
+  console.log("Seeding data ...");
 
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
@@ -38,11 +51,21 @@ const seed = async (posts) => {
       create: post,
     });
   }
+
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    console.log("Creating user:", user);
+    await client.user.upsert({
+      where: { id: user.id },
+      update: user,
+      create: user,
+    });
+  }
 };
 
-seed(postsToCreate)
+seed(postsToCreate, usersToCreate)
   .then(() => {
-    console.log("Seed created/updated posts successfully.");
+    console.log("Seed created/updated successfully.");
   })
   .catch((error) => {
     console.error("Seed error:", error);
