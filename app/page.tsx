@@ -87,7 +87,7 @@ export default function Home() {
       <div className={styles.center}>
         <p style={{ textAlign: "center" }}>
           <span className="title">Next.js</span> &&nbsp;
-          <span className="title">ElysiaJS</span> template starter
+          <span className="title">ElysiaJS</span> template
         </p>
       </div>
 
