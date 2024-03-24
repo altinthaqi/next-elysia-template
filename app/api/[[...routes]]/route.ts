@@ -2,6 +2,7 @@ import Elysia from "elysia";
 import postRoutes from "./post";
 import swagger from "@elysiajs/swagger";
 import authRoutes from "./auth";
+import { validateSession } from "@/app/libs/auth";
 
 const swaggerConfig = {
   documentation: {
@@ -16,7 +17,15 @@ const swaggerConfig = {
 const app = new Elysia({ prefix: "/api" })
   .use(swagger(swaggerConfig))
   .use(authRoutes)
-  .use(postRoutes);
+  .guard(
+    {
+      async beforeHandle({ set }) {
+        const { session } = await validateSession();
+        if (!session) return (set.status = "Unauthorized");
+      },
+    },
+    (app) => app.use(postRoutes)
+  );
 
 // Expose methods
 export const GET = app.handle;

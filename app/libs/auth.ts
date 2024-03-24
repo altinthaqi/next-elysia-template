@@ -30,7 +30,7 @@ interface DatabaseUserAttributes {
   username: string;
 }
 
-export const validateRequest = cache(
+export const validateSession = cache(
   async (): Promise<
     { user: User; session: Session } | { user: null; session: null }
   > => {

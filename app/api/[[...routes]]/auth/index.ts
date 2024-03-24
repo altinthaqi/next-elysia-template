@@ -3,7 +3,7 @@ import Elysia, { t } from "elysia";
 import { cookies } from "next/headers";
 import argon2 from "argon2";
 import { generateId } from "lucia";
-import { validateRequest, lucia } from "@/app/libs/auth";
+import { validateSession, lucia } from "@/app/libs/auth";
 
 const schema = {
   "auth.sign-up": t.Object({
@@ -115,7 +115,7 @@ const authRoutes = new Elysia()
     }
   )
   .post("/sign-out", async () => {
-    const { session } = await validateRequest();
+    const { session } = await validateSession();
     if (!session) {
       return {
         error: "Unauthorized",
