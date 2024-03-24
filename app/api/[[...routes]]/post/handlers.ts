@@ -1,12 +1,12 @@
 import { NotFoundError } from "elysia";
-import { WithDBType } from "@route-setup";
+import { WithPrisma } from "@prisma-service";
 
 /**
  * Getting all posts
  */
-export const getPosts = async ({ db }: WithDBType) => {
+export const getPosts = async ({ prisma }: WithPrisma) => {
   try {
-    return await db.post.findMany({ orderBy: { createdAt: "asc" } });
+    return await prisma.post.findMany({ orderBy: { createdAt: "asc" } });
   } catch (error) {
     console.error(`Error getting posts: ${error}`);
   }
@@ -17,11 +17,11 @@ export const getPosts = async ({ db }: WithDBType) => {
  */
 export const getPost = async ({
   params,
-  db,
-}: { params: { id: number } } & WithDBType) => {
+  prisma,
+}: { params: { id: string } } & WithPrisma) => {
   try {
-    const post = await db.post.findUnique({
-      where: { id: params.id },
+    const post = await prisma.post.findUnique({
+      where: { id: Number(params.id) },
     });
 
     if (!post) {
@@ -39,17 +39,17 @@ export const getPost = async ({
  */
 export const createPost = async ({
   body,
-  db,
+  prisma,
 }: {
   body: {
     title: string;
     content: string;
   };
-} & WithDBType) => {
+} & WithPrisma) => {
   try {
     const { title, content } = body;
 
-    return await db.post.create({ data: { title, content } });
+    return await prisma.post.create({ data: { title, content } });
   } catch (error) {
     console.error(`Error creating post: ${error}`);
   }
@@ -61,16 +61,16 @@ export const createPost = async ({
 export const updatePost = async ({
   params,
   body,
-  db,
+  prisma,
 }: {
-  params: { id: number };
+  params: { id: string };
   body: { title?: string; content?: string };
-} & WithDBType) => {
+} & WithPrisma) => {
   try {
     const { title, content } = body;
 
-    return await db.post.update({
-      where: { id: params.id },
+    return await prisma.post.update({
+      where: { id: Number(params.id) },
       data: {
         ...(title ? { title } : {}),
         ...(content ? { content } : {}),
@@ -86,13 +86,11 @@ export const updatePost = async ({
  */
 export const deletePost = async ({
   body,
-  db,
-}: { body: { id: number } } & WithDBType) => {
+  prisma,
+}: { body: { id: string } } & WithPrisma) => {
   try {
-    const { id } = body;
-
-    return await db.post.delete({
-      where: { id },
+    return await prisma.post.delete({
+      where: { id: Number(body.id) },
     });
   } catch (error) {
     console.error(`Error deleting post: ${error}`);

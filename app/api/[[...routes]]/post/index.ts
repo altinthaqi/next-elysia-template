@@ -1,5 +1,5 @@
 import { Elysia, t } from "elysia";
-import routeSetup from "@route-setup";
+import prismaService from "@prisma-service";
 
 import {
   createPost,
@@ -11,21 +11,25 @@ import {
 
 import { postSchema } from "./schema";
 
-const postRoutes = new Elysia({ prefix: "/post" })
+const postRoutes = new Elysia({ prefix: "/posts" })
   .model(postSchema)
-  .use(routeSetup)
-  .get("/", ({ db }) => getPosts({ db }))
-  .get("/:id", ({ params, db }) => getPost({ params, db }), {
+  .use(prismaService)
+  .get("/", ({ prisma }) => getPosts({ prisma }))
+  .get("/:id", ({ params, prisma }) => getPost({ params, prisma }), {
     params: "post.get.id",
   })
-  .post("/", ({ body, db }) => createPost({ body, db }), {
+  .post("/", ({ body, prisma }) => createPost({ body, prisma }), {
     body: "post.create",
   })
-  .patch("/:id", ({ params, body, db }) => updatePost({ params, body, db }), {
-    params: "post.patch.params",
-    body: "post.patch.body",
-  })
-  .delete("/", ({ body, db }) => deletePost({ body, db }), {
+  .patch(
+    "/:id",
+    ({ params, body, prisma }) => updatePost({ params, body, prisma }),
+    {
+      params: "post.patch.params",
+      body: "post.patch.body",
+    }
+  )
+  .delete("/", ({ body, prisma }) => deletePost({ body, prisma }), {
     body: "post.delete",
   });
 

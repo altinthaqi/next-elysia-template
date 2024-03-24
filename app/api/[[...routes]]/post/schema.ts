@@ -2,7 +2,7 @@ import { t } from "elysia";
 
 export const postSchema = {
   "post.get.id": t.Object({
-    id: t.Number(),
+    id: t.String(),
   }),
   "post.create": t.Object({
     title: t.String({
@@ -15,7 +15,7 @@ export const postSchema = {
     }),
   }),
   "post.patch.params": t.Object({
-    id: t.Numeric(),
+    id: t.String(),
   }),
   "post.patch.body": t.Object(
     {
@@ -37,6 +37,6 @@ export const postSchema = {
     }
   ),
   "post.delete": t.Object({
-    id: t.Number(),
+    id: t.String(),
   }),
 };
