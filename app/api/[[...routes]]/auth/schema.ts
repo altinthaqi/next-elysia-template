@@ -2,7 +2,6 @@ import { t } from "elysia";
 
 export const authSchema = {
   "auth.sign-up": t.Object({
-    name: t.String(),
     password: t.String({
       minLength: 3,
       maxLength: 20,

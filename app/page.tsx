@@ -1,27 +1,83 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
+// import { api } from "./libs/api";
+
+const gitRepo = "git clone git@github.com:altinthaqi/next-elysia-template.git";
 
 export default function Home() {
+  const [showNotification, setShowNotification] = useState(false);
+
+  const handleClick = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2000);
+  };
+
+  useEffect(() => {
+    // api.posts.index.get().then(console.log)
+    // api["sign-in"]
+    //   .post({
+    //     username: "epsilono@.com",
+    //     password: "123456",
+    //   })
+    //   .then(console.log);
+    // api["sign-up"]
+    //   .post({
+    //     username: "elysia-rocks@template.com",
+    //     password: "something-you-will-never-guess",
+    //   })
+    //   .then(console.log);
+  }, []);
+
   return (
     <main className={styles.main}>
+      {showNotification && (
+        <div className={styles.notification}>Copied to clipboard</div>
+      )}
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
+        <p
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexDirection: "column",
+            textAlign: "start",
+          }}
+        >
+          Get started by cloning the repo:&nbsp;
+          <br />
+          <br />
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <code className={styles.code}>{gitRepo}</code>
+            <Image
+              src="/copy-icon.png"
+              alt="Next.js Logo"
+              width={24}
+              height={24}
+              onClick={() => {
+                navigator.clipboard.writeText(gitRepo);
+                handleClick();
+              }}
+              style={{ cursor: "pointer" }}
+            />
+          </span>
         </p>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+          <a href="https://elysiajs.com/" target="_blank">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
+              src="/elysia-logo.png"
+              alt="ElysiaJS Logo"
               className={styles.vercelLogo}
-              width={100}
-              height={24}
+              width={120}
+              height={120}
               priority
             />
           </a>
@@ -29,64 +85,64 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+        <p style={{ textAlign: "center" }}>
+          <span className="title">Next.js</span> &&nbsp;
+          <span className="title">ElysiaJS</span> template starter
+        </p>
       </div>
 
       <div className={styles.grid}>
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://github.com/elysiajs/eden"
           className={styles.card}
           target="_blank"
-          rel="noopener noreferrer"
         >
           <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
+            Eden <span>-&gt;</span>
           </h2>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Eden is a RPC-like client to connect Elysia end-to-end type safety
+            using only TypeScript&apos;s type inference instead of code
+            generation.
+          </p>
+        </a>
+
+        <a
+          href="https://www.prisma.io/"
+          className={styles.card}
+          target="_blank"
+        >
+          <h2>
+            Prisma <span>-&gt;</span>
+          </h2>
+          <p>
+            Prisma provides the best experience for your team to work and
+            interact with databases. Build, optimize to make everything run
+            smoothly, and grow.
+          </p>
+        </a>
+
+        <a
+          href="https://lucia-auth.com/"
+          className={styles.card}
+          target="_blank"
+        >
+          <h2>
+            Lucia <span>-&gt;</span>
+          </h2>
+          <p>
+            Lucia is a fully typed auth library for your server that abstracts
+            away the complexity of handling sessions.
+          </p>
+        </a>
+
+        <a href="https://swagger.io/" className={styles.card} target="_blank">
+          <h2>
+            Swagger <span>-&gt;</span>
+          </h2>
+          <p>
+            Write and visualize new API definitions to generate an interactive
+            UI, fully-hosted in the cloud while simplifying API development.
           </p>
         </a>
       </div>
