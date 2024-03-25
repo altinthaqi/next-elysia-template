@@ -3,6 +3,16 @@ import postRoutes from "./post";
 import swagger from "@elysiajs/swagger";
 import authRoutes from "./auth";
 import { authMiddleware } from "./auth/middleware";
+import cors, { HTTPMethod } from "@elysiajs/cors";
+
+const corsConfig = {
+  origin: "*",
+  methods: ["GET", "POST", "PATCH", "DELETE", "PUT"] as HTTPMethod[],
+  allowedHeaders: "*",
+  exposedHeaders: "*",
+  maxAge: 5,
+  credentials: true,
+};
 
 const swaggerConfig = {
   documentation: {
@@ -16,6 +26,7 @@ const swaggerConfig = {
 
 const app = new Elysia({ prefix: "/api" })
   .use(swagger(swaggerConfig))
+  .use(cors(corsConfig))
   .use(authMiddleware)
   .use(authRoutes)
   .guard(

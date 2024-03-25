@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
     "@elysiajs/swagger": "^1.0.3",
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/client": "5.11.0",
