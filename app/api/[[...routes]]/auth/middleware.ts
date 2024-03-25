@@ -47,7 +47,7 @@ export const authMiddleware = new Elysia().derive(
     }
     if (!session) {
       const sessionCookie = lucia.createBlankSessionCookie();
-      context.cookie[sessionCookie.name].set({
+      context.cookie?.[sessionCookie.name].set({
         value: sessionCookie.value,
         ...sessionCookie.attributes,
       });

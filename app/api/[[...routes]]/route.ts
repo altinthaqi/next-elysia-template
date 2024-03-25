@@ -4,6 +4,7 @@ import swagger from "@elysiajs/swagger";
 import authRoutes from "./auth";
 import { authMiddleware } from "./auth/middleware";
 import cors, { HTTPMethod } from "@elysiajs/cors";
+import { Logestic } from "logestic";
 
 const corsConfig = {
   origin: "*",
@@ -25,6 +26,7 @@ const swaggerConfig = {
 };
 
 const app = new Elysia({ prefix: "/api" })
+  .use(Logestic.preset("common"))
   .use(swagger(swaggerConfig))
   .use(cors(corsConfig))
   .use(authMiddleware)

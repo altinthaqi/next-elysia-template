@@ -17,19 +17,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // api.posts.index.get().then(console.log)
+    // api["sign-up"].post({
+    //   username: "epsilono@elysia-template.com",
+    //   password: "supersecret",
+    // });
+    // api.posts.index.get().then(console.log);
     // api["sign-in"]
     //   .post({
-    //     username: "epsilono@.com",
-    //     password: "123456",
-    //   })
-    //   .then(console.log);
-    // api["sign-up"]
-    //   .post({
-    //     username: "elysia-rocks@template.com",
-    //     password: "something-you-will-never-guess",
-    //   })
-    //   .then(console.log);
+    //     username: "epsilono@elysia-template.com",
+    //     password: "supersecret",
+    //   });
   }, []);
 
   return (
