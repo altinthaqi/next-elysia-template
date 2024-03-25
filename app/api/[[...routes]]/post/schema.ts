@@ -1,10 +1,10 @@
-import { t } from "elysia";
+import { t } from 'elysia';
 
 export const postSchema = {
-  "post.get.id": t.Object({
+  'post.get.id': t.Object({
     id: t.String(),
   }),
-  "post.create": t.Object({
+  'post.create': t.Object({
     title: t.String({
       minLength: 3,
       maxLength: 50,
@@ -14,10 +14,10 @@ export const postSchema = {
       maxLength: 50,
     }),
   }),
-  "post.patch.params": t.Object({
+  'post.patch.params': t.Object({
     id: t.String(),
   }),
-  "post.patch.body": t.Object(
+  'post.patch.body': t.Object(
     {
       title: t.Optional(
         t.String({
@@ -36,7 +36,7 @@ export const postSchema = {
       minProperties: 1,
     }
   ),
-  "post.delete": t.Object({
+  'post.delete': t.Object({
     id: t.String(),
   }),
 };

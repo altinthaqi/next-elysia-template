@@ -1,1 +1,1 @@
-export * from "./[[...routes]]/route";
+export * from './[[...routes]]/route';

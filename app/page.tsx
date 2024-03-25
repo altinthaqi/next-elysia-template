@@ -1,10 +1,12 @@
-"use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+'use client';
+
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+
 // import { api } from "./libs/api";
 
-const gitRepo = "git clone git@github.com:altinthaqi/next-elysia-template.git";
+const gitRepo = 'git clone git@github.com:altinthaqi/next-elysia-template.git';
 
 export default function Home() {
   const [showNotification, setShowNotification] = useState(false);
@@ -37,10 +39,10 @@ export default function Home() {
       <div className={styles.description}>
         <p
           style={{
-            display: "flex",
-            gap: "10px",
-            flexDirection: "column",
-            textAlign: "start",
+            display: 'flex',
+            gap: '10px',
+            flexDirection: 'column',
+            textAlign: 'start',
           }}
         >
           Get started by cloning the repo:&nbsp;
@@ -48,30 +50,30 @@ export default function Home() {
           <br />
           <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
             }}
           >
             <code className={styles.code}>{gitRepo}</code>
             <Image
-              src="/copy-icon.png"
-              alt="Next.js Logo"
+              src='/copy-icon.png'
+              alt='Next.js Logo'
               width={24}
               height={24}
               onClick={() => {
                 navigator.clipboard.writeText(gitRepo);
                 handleClick();
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             />
           </span>
         </p>
         <div>
-          <a href="https://elysiajs.com/" target="_blank">
+          <a href='https://elysiajs.com/' target='_blank'>
             <Image
-              src="/elysia-logo.png"
-              alt="ElysiaJS Logo"
+              src='/elysia-logo.png'
+              alt='ElysiaJS Logo'
               className={styles.vercelLogo}
               width={120}
               height={120}
@@ -82,17 +84,17 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <p style={{ textAlign: "center" }}>
-          <span className="title">Next.js</span> &&nbsp;
-          <span className="title">ElysiaJS</span> template
+        <p style={{ textAlign: 'center' }}>
+          <span className='title'>Next.js</span> &&nbsp;
+          <span className='title'>ElysiaJS</span> template
         </p>
       </div>
 
       <div className={styles.grid}>
         <a
-          href="https://github.com/elysiajs/eden"
+          href='https://github.com/elysiajs/eden'
           className={styles.card}
-          target="_blank"
+          target='_blank'
         >
           <h2>
             Eden <span>-&gt;</span>
@@ -105,9 +107,9 @@ export default function Home() {
         </a>
 
         <a
-          href="https://www.prisma.io/"
+          href='https://www.prisma.io/'
           className={styles.card}
-          target="_blank"
+          target='_blank'
         >
           <h2>
             Prisma <span>-&gt;</span>
@@ -120,9 +122,9 @@ export default function Home() {
         </a>
 
         <a
-          href="https://lucia-auth.com/"
+          href='https://lucia-auth.com/'
           className={styles.card}
-          target="_blank"
+          target='_blank'
         >
           <h2>
             Lucia <span>-&gt;</span>
@@ -133,7 +135,7 @@ export default function Home() {
           </p>
         </a>
 
-        <a href="https://swagger.io/" className={styles.card} target="_blank">
+        <a href='https://swagger.io/' className={styles.card} target='_blank'>
           <h2>
             Swagger <span>-&gt;</span>
           </h2>

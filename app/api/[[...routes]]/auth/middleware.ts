@@ -1,11 +1,10 @@
-import { lucia } from "@/app/libs/auth";
-import Elysia from "elysia";
-import { verifyRequestOrigin } from "lucia";
-
-import type { User, Session } from "lucia";
+import Elysia from 'elysia';
+import { verifyRequestOrigin } from 'lucia';
+import type { Session, User } from 'lucia';
+import { lucia } from '@/app/libs/auth';
 
 export const authMiddleware = new Elysia().derive(
-  { as: "global" },
+  { as: 'global' },
   async (
     context
   ): Promise<{
@@ -13,9 +12,9 @@ export const authMiddleware = new Elysia().derive(
     session: Session | null;
   }> => {
     // CSRF check
-    if (context.request.method !== "GET") {
-      const originHeader = context.request.headers.get("Origin");
-      const hostHeader = context.request.headers.get("Host");
+    if (context.request.method !== 'GET') {
+      const originHeader = context.request.headers.get('Origin');
+      const hostHeader = context.request.headers.get('Host');
       if (
         !originHeader ||
         !hostHeader ||
@@ -28,7 +27,7 @@ export const authMiddleware = new Elysia().derive(
       }
     }
 
-    const cookieHeader = context.request.headers.get("Cookie") ?? "";
+    const cookieHeader = context.request.headers.get('Cookie') ?? '';
     const sessionId = lucia.readSessionCookie(cookieHeader);
     if (!sessionId) {
       return {

@@ -1,12 +1,12 @@
-import { NotFoundError } from "elysia";
-import { WithPrisma } from "@prisma-service";
+import { WithPrisma } from '@prisma-service';
+import { NotFoundError } from 'elysia';
 
 /**
  * Getting all posts
  */
 export const getPosts = async ({ prisma }: WithPrisma) => {
   try {
-    return await prisma.post.findMany({ orderBy: { createdAt: "asc" } });
+    return await prisma.post.findMany({ orderBy: { createdAt: 'asc' } });
   } catch (error) {
     console.error(`Error getting posts: ${error}`);
   }
@@ -25,7 +25,7 @@ export const getPost = async ({
     });
 
     if (!post) {
-      throw new NotFoundError("Post not found.");
+      throw new NotFoundError('Post not found.');
     }
 
     return post;

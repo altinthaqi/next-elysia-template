@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import Elysia from "elysia";
+import { PrismaClient } from '@prisma/client';
+import Elysia from 'elysia';
 
 export type WithPrisma = {
   prisma: typeof prismaClient;
@@ -7,7 +7,7 @@ export type WithPrisma = {
 
 export const prismaClient = new PrismaClient();
 
-const prismaService = new Elysia({ name: "prismaService" }).decorate({
+const prismaService = new Elysia({ name: 'prismaService' }).decorate({
   prisma: prismaClient,
 });
 

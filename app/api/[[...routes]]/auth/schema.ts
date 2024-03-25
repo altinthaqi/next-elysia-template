@@ -1,7 +1,7 @@
-import { t } from "elysia";
+import { t } from 'elysia';
 
 export const authSchema = {
-  "auth.sign-up": t.Object({
+  'auth.sign-up': t.Object({
     password: t.String({
       minLength: 3,
       maxLength: 20,
@@ -10,7 +10,7 @@ export const authSchema = {
       minLength: 5,
     }),
   }),
-  "auth.sign-in": t.Object({
+  'auth.sign-in': t.Object({
     password: t.String({
       minLength: 3,
       maxLength: 20,

@@ -1,8 +1,8 @@
-import { WithPrisma } from "@/app/db";
-import { lucia } from "@/app/libs/auth";
-import argon2 from "argon2";
-import { Session, generateId } from "lucia";
-import { cookies } from "next/headers";
+import argon2 from 'argon2';
+import { generateId, Session } from 'lucia';
+import { cookies } from 'next/headers';
+import { WithPrisma } from '@/app/db';
+import { lucia } from '@/app/libs/auth';
 
 export const signUp = async ({
   body,
@@ -20,7 +20,7 @@ export const signUp = async ({
 
   if (emailExists) {
     return {
-      error: "Email already exists",
+      error: 'Email already exists',
     };
   }
 
@@ -64,7 +64,7 @@ export const signIn = async ({
 
   if (!existingUser) {
     return {
-      error: "Incorrect username or password",
+      error: 'Incorrect username or password',
     };
   }
 
@@ -75,7 +75,7 @@ export const signIn = async ({
 
   if (!validPassword) {
     return {
-      error: "Incorrect username or password",
+      error: 'Incorrect username or password',
     };
   }
 
@@ -91,7 +91,7 @@ export const signIn = async ({
 export const signOut = async ({ session }: { session: Session | null }) => {
   if (!session) {
     return {
-      error: "Unauthorized",
+      error: 'Unauthorized',
     };
   }
 
