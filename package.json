@@ -10,7 +10,8 @@
     "lint": "eslint app/",
     "lint:fix": "eslint app --fix",
     "format:check": "prettier --check app/",
-    "format:fix": "prettier --write app/"
+    "format:fix": "prettier --write app/",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
