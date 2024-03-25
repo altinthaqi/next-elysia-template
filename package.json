@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"docker-compose up\" \"next dev\"",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
@@ -16,7 +16,9 @@
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/client": "5.11.0",
     "argon2": "^0.40.1",
+    "concurrently": "^8.2.2",
     "elysia": "^1.0.7",
+    "logestic": "^0.5.2",
     "lucia": "^3.1.1",
     "next": "14.1.4",
     "oslo": "^1.1.3",
