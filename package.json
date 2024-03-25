@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/eden": "^1.0.5",
     "@elysiajs/swagger": "^1.0.3",
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/client": "5.11.0",
